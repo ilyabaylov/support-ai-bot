@@ -1,0 +1,10 @@
+services:
+  bot:
+    build: .
+    env_file: .env
+    restart: unless-stopped
+    volumes:
+      # тут лежит собранный векторный индекс
+      - ./data:/app/data
+      # базу знаний монтируем отдельно, чтобы менять FAQ без пересборки образа
+      - ./knowledge_base:/app/knowledge_base
